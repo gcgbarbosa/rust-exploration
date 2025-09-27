@@ -1,38 +1,62 @@
-use ::std::cmp::Ordering;
-use ::std::io;
-
-use rand::Rng;
-
 fn main() {
-    println!("Guess the number!");
+    println!("testing");
 
-    let secret_number = rand::rng().random_range(1..=100);
+    let x = 5;
 
-    // println!("The secret number is: {secret_number}");
+    println!("x is: {x}");
+
+    let x = 10;
+
+    let a = [1, 2, 3, 4, 5];
+
+    let first = a[0];
+
+    println!("x is: {x}, {}, {}", first, a[3]);
+
+    another_function("hello");
+
+    let f_return = function_with_return();
+
+    // this is a comment
+    println!("function with return {f_return}");
+
+    /*
+     * this is a multiline comment
+     * */
+
+    if first == 1 {
+        println!("first is one");
+    }
+
+    let k = if x == 10 { 5 } else { 0 };
+
+    println!("test {}", k);
+
+    let mut counter = 0;
 
     loop {
-        let mut guess = String::new();
+        println!("again! {}", counter);
+        counter += 1;
 
-        println!("Please input your guess");
-
-        io::stdin()
-            .read_line(&mut guess)
-            .expect("Failed to read a line");
-
-        let guess: u32 = match guess.trim().parse() {
-            Ok(num) => num,
-            Err(_) => continue,
-        };
-
-        match guess.cmp(&secret_number) {
-            Ordering::Less => println!("too small"),
-            Ordering::Greater => println!("too big"),
-            Ordering::Equal => {
-                println!("you win");
-                break;
-            }
+        if counter == 10 {
+            break;
         }
-
-        println!("You guessed {guess}");
     }
+
+    while counter > 0 {
+        counter -= 1;
+        println!("again! {}", counter);
+    }
+
+    for number in (1..10).rev() {
+        println!("test {}", number)
+    }
+}
+
+fn another_function(x: &str) {
+    println!("string {x}")
+}
+
+fn function_with_return() -> u32 {
+    5
 }
